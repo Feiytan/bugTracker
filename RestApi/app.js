@@ -1,12 +1,21 @@
 const express = require('express')
 const app = express();
+const bodyParser = require('body-parser')
 
-const usersRouter = require('./Routes/Users')
+const usersRouter = require('./Routes/users')
+
+app.use(bodyParser.json())
 
 app.use('/users', usersRouter)
 
 app.use((req, res, next) => {
-    res.status(500).json({ message: 'No matching endpoints' })
+    const error = new Error('Not found')
+    error.status = 404
+    next(error)
+})
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500).json({ message: error.message })
 })
 
 module.exports = app
