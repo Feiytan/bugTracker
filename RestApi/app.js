@@ -3,10 +3,13 @@ const app = express();
 const bodyParser = require('body-parser')
 
 const usersRouter = require('./Routes/users')
+const teamsRouter = require('./Routes/teams')
 
 app.use(bodyParser.json())
 
 app.use('/users', usersRouter)
+
+app.use('/teams', teamsRouter)
 
 app.use((req, res, next) => {
     const error = new Error('Not found')
