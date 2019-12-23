@@ -4,11 +4,17 @@ const bodyParser = require('body-parser')
 
 const usersRouter = require('./Routes/usersRouter')
 const teamsRouter = require('./Routes/teamsRouter')
+const roomsRouter = require('./Routes/roomsRouter')
+const ticketsRouter = require('./Routes/ticketsRouter')
+const commentsRouter = require('./Routes/commentsRouter')
 
 app.use(bodyParser.json())
 app.use('/users', usersRouter)
-
 app.use('/teams', teamsRouter)
+app.use('/rooms', roomsRouter)
+app.use('/tickets', ticketsRouter)
+app.use('/comments', commentsRouter)
+
 
 app.use((req, res, next) => {
     const error = new Error('Not found')

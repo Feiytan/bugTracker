@@ -12,7 +12,7 @@ exports.getAll = function(req, res, next) {
             })
             res.status(200).json({
                 count: rows.length,
-                result: dtos
+                rows: dtos
             })
         })
         .catch(error => {
@@ -80,5 +80,4 @@ exports.patch = function(req, res, next) {
         .catch(error => {
             res.status(error.status).json(error.errorContent)
         })
-
 }
