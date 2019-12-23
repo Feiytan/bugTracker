@@ -2,11 +2,10 @@ const express = require('express')
 const app = express();
 const bodyParser = require('body-parser')
 
-const usersRouter = require('./Routes/users')
-const teamsRouter = require('./Routes/teams')
+const usersRouter = require('./Routes/usersRouter')
+const teamsRouter = require('./Routes/teamsRouter')
 
 app.use(bodyParser.json())
-
 app.use('/users', usersRouter)
 
 app.use('/teams', teamsRouter)
