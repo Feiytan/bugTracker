@@ -1,5 +1,4 @@
 const pool = require('../Config/mysql')
-const bcrypt = require('bcrypt')
 const globalDAO = require('../DAL/globalDAO')
 const userDAO = require('../DAL/userDAO')
 const helpers = require('../Helpers/helpers')

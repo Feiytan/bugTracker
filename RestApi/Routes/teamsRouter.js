@@ -4,15 +4,15 @@ const getLocals = require('../Middleware/locals')
 
 const router = express.Router()
 
-router.get('/', getLocals.getUserLocals, globalController.getAll)
+router.get('/', getLocals.getTeamLocals, globalController.getAll)
 
-router.get('/:id', getLocals.getUserLocals, globalController.getById)
+router.get('/:id', getLocals.getTeamLocals, globalController.getById)
 
-router.delete('/:id', getLocals.getUserLocals, globalController.delete)
+router.delete('/:id', getLocals.getTeamLocals, globalController.delete)
 
-router.post('/', getLocals.getUserLocals, globalController.create)
+router.post('/', getLocals.getTeamLocals, globalController.create)
 
-router.patch('/:id', getLocals.getUserLocals, globalController.patch)
+router.patch('/:id', getLocals.getTeamLocals, globalController.patch)
 
 
 module.exports = router
