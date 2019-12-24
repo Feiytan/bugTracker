@@ -3,10 +3,11 @@ const globalController = require('../Controllers/globalController')
 const userController = require('../Controllers/userController')
 const getLocals = require('../Middleware/locals')
 const cryptPassword = require('../Middleware/bcrypt')
+const checkAuth = require('../Middleware/check-auth')
 
 const router = express.Router()
 
-router.get('/', getLocals.getUserLocals, globalController.getAll)
+router.get('/', checkAuth, getLocals.getUserLocals, globalController.getAll)
 
 router.get('/:id', getLocals.getUserLocals, globalController.getById)
 

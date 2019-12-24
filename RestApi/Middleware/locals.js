@@ -1,5 +1,5 @@
 exports.getUserLocals = function(req, res, next) {
-    req.locals = {
+    req.locals = Object.assign({
         tableName: 'Users',
         idName: 'User_id',
         validKeys: ['email', 'password', 'pseudo'],
@@ -10,7 +10,8 @@ exports.getUserLocals = function(req, res, next) {
                 email: user.Email
             }
         }
-    }
+    }, req.locals)
+    console.log(req.locals)
     next()
 }
 
