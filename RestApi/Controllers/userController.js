@@ -33,7 +33,7 @@ exports.login = function(req, res, next) {
                 } else {
                     if (passwordIsValid) {
                         response = req.locals.getDto(rows[0])
-                        response.jwt = jwt.getJwt({ id: rows[0].User_id })
+                        response.jwt = jwt.getJwt({ id: rows[0].User_id, profile: rows[0].Profile })
                         res.status(200).json(response)
                     } else {
                         res.status(412).json({ message: "password invalid" })

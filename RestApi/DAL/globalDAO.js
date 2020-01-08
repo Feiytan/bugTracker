@@ -45,7 +45,6 @@ exports.get = function(tableName, params) {
 exports.delete = function(tableName, id, idName) {
     return new Promise(function(resolve, reject) {
         sql = "DELETE FROM " + tableName + " WHERE " + idName + " = ?"
-        console.log(sql)
         pool.query(sql, [id], (error, result) => {
             if (error) {
                 reject({ status: 500, errorContent: { message: error.sqlMessage } })

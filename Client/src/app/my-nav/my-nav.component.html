@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" [mode]="isWeb ? 'side' : 'over'" [opened]="isWeb">
+        <mat-toolbar color="accent">
+            <span>Menu</span>
+        </mat-toolbar>
+        <mat-action-list>
+            <button mat-list-item routerLink="/rooms" (click)="navigate()">Rooms</button>
+            <button mat-list-item routerLink="/teams" (click)="navigate()">Teams</button>
+            <button mat-list-item routerLink="/profile" (click)="navigate()">Profile</button>
+            <button mat-list-item routerLink="/contact" (click)="navigate()">Contact</button>
+        </mat-action-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row class="main-header">
+                <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="!isWeb">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+                <span class="logo">
+                    <h1 class="mat-h1">BugTracker <mat-icon>my_location</mat-icon></h1>
+                </span>
+                <span class="spacer"></span>
+                <div *ngIf="isWeb">
+                    <button mat-button routerLink=".">Link</button>
+                    <button mat-button routerLink=".">Link</button>
+                    <button mat-button routerLink=".">Link</button>
+                </div>
+            </mat-toolbar-row>
+            <mat-toolbar-row>
+                <span class="spacer"></span>
+                <h2 class="">{{menuName}}</h2>
+                <span class="spacer"></span>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
