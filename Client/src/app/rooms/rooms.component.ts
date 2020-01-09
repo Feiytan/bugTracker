@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavService } from '../my-nav/nav.service';
 
 @Component({
   selector: 'app-rooms',
@@ -8,10 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RoomsComponent implements OnInit {
 
-  constructor( private route : ActivatedRoute) { }
+  constructor( private route : ActivatedRoute, private navService : NavService) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.data.title)
+    this.navService.currentPageObservable.next('Rooms')
   }
 
 }

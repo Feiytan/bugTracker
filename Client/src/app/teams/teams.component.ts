@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavService } from '../my-nav/nav.service';
 
 @Component({
   selector: 'app-teams',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamsComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private navService: NavService) {
+  }
+  
   ngOnInit() {
+    this.navService.currentPageObservable.next('Teams')
   }
 
 }

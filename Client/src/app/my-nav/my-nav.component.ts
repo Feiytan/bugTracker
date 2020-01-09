@@ -5,6 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { TestBed } from '@angular/core/testing';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
+import { NavService } from './nav.service';
 
 @Component({
   selector: 'app-my-nav',
@@ -12,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./my-nav.component.css']
 })
 
-export class MyNavComponent implements OnDestroy, OnInit{
+export class MyNavComponent implements OnDestroy{
 
 
   @ViewChild('drawer', {static: false}) private drawer : MatSidenav
@@ -25,18 +26,20 @@ export class MyNavComponent implements OnDestroy, OnInit{
 
   private subtoBreakPoints : Subscription
   private subToRoute: Subscription
+  private subToNavigation: Subscription
   private isWeb : boolean
-  private menuName: string = "Rooms"
+  private pageName: string
 
-  constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute) {
+  constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute, private navService: NavService) {
     this.subtoBreakPoints = this.isWebObserver$.subscribe(response => {
       this.isWeb = response
-      console.log(this.isWeb)
     })
-  }
 
-  ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.data)
+    this.navService.currentPageObservable.subscribe({
+      next: (pageName:string) => {
+        this.pageName = pageName
+      }
+    })
   }
 
   navigate() {
@@ -51,5 +54,6 @@ export class MyNavComponent implements OnDestroy, OnInit{
   ngOnDestroy(): void {
     this.subtoBreakPoints.unsubscribe()
     this.subToRoute.unsubscribe()
+    this.subToNavigation.unsubscribe()
   }
 }
