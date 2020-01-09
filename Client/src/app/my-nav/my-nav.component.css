@@ -6,10 +6,6 @@
     width: 200px;
 }
 
-.sidenav .mat-toolbar {
-    background: inherit;
-}
-
 .spacer {
     flex: 1 1 auto;
 }
@@ -17,6 +13,8 @@
 .main-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.4);
+    background-color: #3F51B5;
+    position: fixed;
 }
 
 .nav-button {
@@ -25,5 +23,13 @@
 }
 
 .active {
-    background-color: rgba(255, 255, 255, 0.2) !important
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.sub-header {
+    margin-top: 55px;
+}
+
+mat-toolbar-row {
+    height: 55px;
 }

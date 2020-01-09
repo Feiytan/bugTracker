@@ -19,6 +19,9 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { TeamsComponent } from './teams/teams.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './login/signin/signin.component';
+import { SignupComponent } from './login/signup/signup.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { ContactComponent } from './contact/contact.component';
     RoomsComponent,
     TeamsComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

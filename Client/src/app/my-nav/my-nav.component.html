@@ -26,12 +26,12 @@
                     <button mat-button routerLink=".">Link</button>
                 </div>
             </mat-toolbar-row>
-            <mat-toolbar-row>
+            <mat-toolbar-row class="sub-header">
                 <span class="spacer"></span>
                 <h2>{{pageName}}</h2>
                 <span class="spacer"></span>
             </mat-toolbar-row>
         </mat-toolbar>
-        <router-outlet></router-outlet>
+        <router-outlet class="container"></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
