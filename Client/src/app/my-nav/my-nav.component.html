@@ -1,13 +1,13 @@
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #drawer class="sidenav" [mode]="isWeb ? 'side' : 'over'" [opened]="isWeb">
-        <mat-toolbar color="accent">
+        <mat-toolbar>
             <span>Menu</span>
         </mat-toolbar>
         <mat-action-list>
-            <button mat-list-item routerLink="/rooms" (click)="navigate()">Rooms</button>
-            <button mat-list-item routerLink="/teams" (click)="navigate()">Teams</button>
-            <button mat-list-item routerLink="/profile" (click)="navigate()">Profile</button>
-            <button mat-list-item routerLink="/contact" (click)="navigate()">Contact</button>
+            <button mat-list-item routerLink="/rooms" routerLinkActive="active" (click)="navigate()">Rooms</button>
+            <button mat-list-item routerLink="/teams" routerLinkActive="active" selected="true" (click)="navigate()">Teams</button>
+            <button mat-list-item routerLink="/profile" routerLinkActive="active" (click)="navigate()">Profile</button>
+            <button mat-list-item routerLink="/contact" routerLinkActive="active" (click)="navigate()">Contact</button>
         </mat-action-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -20,7 +20,7 @@
                     <h1 class="mat-h1">BugTracker <mat-icon>my_location</mat-icon></h1>
                 </span>
                 <span class="spacer"></span>
-                <div *ngIf="isWeb">
+                <div>
                     <button mat-button routerLink=".">Link</button>
                     <button mat-button routerLink=".">Link</button>
                     <button mat-button routerLink=".">Link</button>
@@ -28,7 +28,7 @@
             </mat-toolbar-row>
             <mat-toolbar-row>
                 <span class="spacer"></span>
-                <h2 class="">{{pageName}}</h2>
+                <h2>{{pageName}}</h2>
                 <span class="spacer"></span>
             </mat-toolbar-row>
         </mat-toolbar>
