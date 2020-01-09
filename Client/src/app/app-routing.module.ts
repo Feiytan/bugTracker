@@ -4,13 +4,15 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { TeamsComponent } from './teams/teams.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
-  { path: 'rooms', component: RoomsComponent, data: {title: 'Rooms'} },
-  { path: 'teams', component: TeamsComponent, data: {title: 'Teams'}},
-  { path: 'profile', component: ProfileComponent, data: {title: 'Profile'} },
-  { path: 'contact', component: ContactComponent, data: {title: 'Contact'} },
+  { path: 'rooms', component: RoomsComponent },
+  { path: 'teams', component: TeamsComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

@@ -33,3 +33,7 @@
 mat-toolbar-row {
     height: 55px;
 }
+
+main {
+    padding: 50px;
+}
