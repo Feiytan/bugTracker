@@ -15,6 +15,7 @@
     box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.4);
     background-color: #3F51B5;
     position: fixed;
+    z-index: 100;
 }
 
 .nav-button {
@@ -35,5 +36,6 @@ mat-toolbar-row {
 }
 
 main {
-    padding: 50px;
+    padding: 10px;
+    height: calc(100% - 130px);
 }

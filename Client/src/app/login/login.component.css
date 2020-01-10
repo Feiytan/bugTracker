@@ -1,7 +1,22 @@
 .container {
     display: flex;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.container-web {
+    flex-direction: row;
+}
+
+.container-mobile {
+    flex-direction: column;
 }
 
 .component {
+    z-index: 0;
+}
+
+.component-web {
+    margin: 40px;
     flex-grow: 1;
 }

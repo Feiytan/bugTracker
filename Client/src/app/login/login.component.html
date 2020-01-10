@@ -1,4 +1,4 @@
-<div class="container">
-    <app-signin class="component"></app-signin>
-    <app-signup class="component"></app-signup>
+<div class="container" [ngClass]="isWeb ? 'container-web' : 'container-mobile'">
+    <app-signin class="component" [ngClass]="isWeb ? 'component-web' : 'component-mobile'"></app-signin>
+    <app-signup class="component" [ngClass]="isWeb ? 'component-web' : 'component-mobile'"></app-signup>
 </div>

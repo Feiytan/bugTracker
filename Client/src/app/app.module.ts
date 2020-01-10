@@ -22,6 +22,9 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './login/signin/signin.component';
 import { SignupComponent } from './login/signup/signup.component';
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input'
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import { SignupComponent } from './login/signup/signup.component';
     MatSidenavModule,
     MatCheckboxModule,
     LayoutModule,
-    MatListModule
+    MatListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
