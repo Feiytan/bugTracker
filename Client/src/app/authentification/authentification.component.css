@@ -6,6 +6,8 @@
 
 .container-web {
     flex-direction: row;
+    align-items: baseline;
+    margin-top: 50px;
 }
 
 .container-mobile {
@@ -21,6 +23,8 @@
 }
 
 .component-web {
-    margin: 40px;
+    flex-basis: 700px;
     flex-grow: 1;
+    flex-shrink: 1;
+    margin: 40px;
 }

@@ -9,7 +9,14 @@
                 <input matInput formControlName="password" placeholder="Password" autocomplete="off" type="password">
             </mat-form-field>
             <div class="controls">
-                <button mat-raised-button type="submit" color="primary" [disabled]="signinForm.valid ? false : true">Sign in !</button>
+                <mat-error class="error" *ngIf="error; else spacer">Sign in failed !</mat-error>
+                <ng-template #spacer>
+                    <div></div>
+                </ng-template>
+                <button *ngIf="!loading; else loader" mat-raised-button type="submit" color="primary" [disabled]="signinForm.valid ? false : true">Sign in !</button>
+                <ng-template #loader>
+                    <mat-progress-spinner mode="indeterminate" color="accent" diameter="30"></mat-progress-spinner>
+                </ng-template>
             </div>
         </form>
     </mat-card-content>

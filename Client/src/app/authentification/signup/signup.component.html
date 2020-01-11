@@ -17,7 +17,10 @@
                 <mat-error>You need to type the same password</mat-error>
             </mat-form-field>
             <div class="controls">
-                <button mat-raised-button type="submit" color="primary" [disabled]="signupForm.valid && passwordsMatch ? false : true">Sign up !</button>
+                <button *ngIf="!loading; else loader" mat-raised-button type="submit" color="primary" [disabled]="signupForm.valid && passwordsMatch ? false : true">Sign up !</button>
+                <ng-template #loader>
+                    <mat-progress-spinner mode="indeterminate" color="accent" diameter="30"></mat-progress-spinner>
+                </ng-template>
             </div>
         </form>
     </mat-card-content>

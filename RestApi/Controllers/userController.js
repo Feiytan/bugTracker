@@ -17,7 +17,7 @@ exports.signup = function(req, res, next) {
                 globalDAO.create('Users', Object.keys(req.body), Object.values(req.body))
                     .then(response => {
                         response.jwt = jwt.getJwt({ id: response.insertId })
-                        res.status(201).json({ response })
+                        res.status(201).json(response)
                     })
                     .catch(error => {
                         res.status(error.status).json(error.errorContent)
@@ -42,7 +42,7 @@ exports.login = function(req, res, next) {
                         response.jwt = jwt.getJwt({ id: rows[0].User_id, profile: rows[0].Profile })
                         res.status(200).json(response)
                     } else {
-                        res.status(412).json({ message: "password invalid" })
+                        res.status(412).json({ message: "Login Failed" })
                     }
                 }
             })

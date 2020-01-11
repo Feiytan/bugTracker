@@ -6,7 +6,3 @@ exports.getJwt = function(payload) {
         expiresIn: '1h'
     })
 }
-
-exports.verifyJwt = function(jwt) {
-    return true
-}

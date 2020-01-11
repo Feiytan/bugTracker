@@ -4,8 +4,9 @@ import { Observable, Subject, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { TestBed } from '@angular/core/testing';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavService } from './nav.service';
+import { AuthentificationService } from '../authentification/authentification.service';
 
 @Component({
   selector: 'app-my-nav',
@@ -24,13 +25,14 @@ export class MyNavComponent implements OnDestroy{
       shareReplay()
     )
 
+  private isLogin : boolean
   private subtoBreakPoints : Subscription
   private subToRoute: Subscription
   private subToNavigation: Subscription
   private isWeb : boolean
   private pageName: string
 
-  constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute, private navService: NavService) {
+  constructor(private breakpointObserver: BreakpointObserver, private activatedRoute: ActivatedRoute, private navService: NavService, private authentificationService: AuthentificationService, private router : Router) {
     this.subtoBreakPoints = this.isWebObserver$.subscribe(response => {
       this.isWeb = response
     })
@@ -40,6 +42,8 @@ export class MyNavComponent implements OnDestroy{
         this.pageName = pageName
       }
     })
+
+    
   }
 
   navigate() {
@@ -49,6 +53,11 @@ export class MyNavComponent implements OnDestroy{
         document.activeElement.blur()
       }
     }
+  }
+
+  logout(){
+    this.authentificationService.userSubject.next(null)
+    this.router.navigate(['/', 'auth'])
   }
 
   ngOnDestroy(): void {

@@ -18,14 +18,12 @@
                     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
                 </button>
                 <span class="logo">
-                    <h1 class="mat-h1">BugTracker <mat-icon>my_location</mat-icon></h1>
+                    <h1 class="mat-h1">BugTracker<mat-icon>my_location</mat-icon></h1>
                 </span>
                 <span class="spacer"></span>
-                <div>
-                    <button mat-button routerLink=".">Link</button>
-                    <button mat-button routerLink=".">Link</button>
-                    <button mat-button routerLink=".">Link</button>
-                </div>
+                <button class="logout-button" mat-icon-button matTooltip="Logout" (click)="logout()">
+                    <mat-icon>power_settings_new</mat-icon>
+                </button>
             </mat-toolbar-row>
             <mat-toolbar-row class="sub-header">
                 <span class="spacer"></span>
