@@ -16,6 +16,10 @@
     z-index: 0;
 }
 
+.component-mobile {
+    margin-top: 10px;
+}
+
 .component-web {
     margin: 40px;
     flex-grow: 1;

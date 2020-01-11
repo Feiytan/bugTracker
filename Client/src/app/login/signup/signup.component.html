@@ -1,13 +1,23 @@
 <mat-card>
     <mat-card-title>Sign up</mat-card-title>
     <mat-card-content>
-        <form>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
             <mat-form-field color="accent">
-                <input matInput placeholder="Email">
+                <input matInput formControlName="pseudo" placeholder="Pseudo">
             </mat-form-field>
             <mat-form-field color="accent">
-                <input matInput placeholder="Password">
+                <input matInput formControlName="email" placeholder="Email">
             </mat-form-field>
+            <mat-form-field color="accent" hintLabel="You need at least 6 characters">
+                <input matInput formControlName="password" placeholder="Password" (keyup)="checkIfPasswordsMatch()">
+            </mat-form-field>
+            <mat-form-field color="accent">
+                <input matInput formControlName="confirmPassword" placeholder="Confirm password" (keyup)="checkIfPasswordsMatch()">
+                <mat-error></mat-error>
+            </mat-form-field>
+            <div class="controls">
+                <button mat-raised-button type="submit" color="primary" [disabled]="signupForm.valid && passwordsMatch ? false : true">Sign up !</button>
+            </div>
         </form>
     </mat-card-content>
 </mat-card>

@@ -37,5 +37,5 @@ mat-toolbar-row {
 
 main {
     padding: 10px;
-    height: calc(100% - 130px);
+    min-height: calc(100% - 130px);
 }
