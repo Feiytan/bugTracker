@@ -20,12 +20,14 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { TeamsComponent } from './teams/teams.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
-import { LoginComponent } from './login/login.component';
-import { SigninComponent } from './login/signin/signin.component';
-import { SignupComponent } from './login/signup/signup.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
+import { SigninComponent } from './authentification/signin/signin.component';
+import { SignupComponent } from './authentification/signup/signup.component';
 import { MatCardModule } from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import {MatInputModule} from '@angular/material/input'
     TeamsComponent,
     ProfileComponent,
     ContactComponent,
-    LoginComponent,
+    AuthentificationComponent,
     SigninComponent,
     SignupComponent
   ],
@@ -57,7 +59,9 @@ import {MatInputModule} from '@angular/material/input'
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ const jwt = require('../Helpers/jwt')
 const bcrypt = require('bcrypt')
 
 exports.signup = function(req, res, next) {
+    req.body.profile = 'user'
+    console.log(req.body)
     globalDAO.get('Users', [
             ['email', req.body.email]
         ])
@@ -11,10 +13,14 @@ exports.signup = function(req, res, next) {
         })
         .catch(error => {
             if (error.status === 404) {
+                console.log('ok')
                 globalDAO.create('Users', Object.keys(req.body), Object.values(req.body))
                     .then(response => {
                         response.jwt = jwt.getJwt({ id: response.insertId })
                         res.status(201).json({ response })
+                    })
+                    .catch(error => {
+                        res.status(error.status).json(error.errorContent)
                     })
             } else {
                 res.status(error.status).json(error.errorContent)

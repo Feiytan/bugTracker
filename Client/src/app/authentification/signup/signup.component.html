@@ -3,17 +3,18 @@
     <mat-card-content>
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
             <mat-form-field color="accent">
-                <input matInput formControlName="pseudo" placeholder="Pseudo">
+                <input matInput formControlName="email" placeholder="Email" autocomplete="off" (keyup)="resetError()">
+                <mat-error>{{emailError}}</mat-error>
             </mat-form-field>
             <mat-form-field color="accent">
-                <input matInput formControlName="email" placeholder="Email">
+                <input matInput formControlName="pseudo" placeholder="Pseudo" autocomplete="off">
             </mat-form-field>
             <mat-form-field color="accent" hintLabel="You need at least 6 characters">
-                <input matInput formControlName="password" placeholder="Password" (keyup)="checkIfPasswordsMatch()">
+                <input type="password" matInput formControlName="password" placeholder="Password" (keyup)="checkIfPasswordsMatch()" autocomplete="off">
             </mat-form-field>
             <mat-form-field color="accent">
-                <input matInput formControlName="confirmPassword" placeholder="Confirm password" (keyup)="checkIfPasswordsMatch()">
-                <mat-error></mat-error>
+                <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm password" (keyup)="checkIfPasswordsMatch()" autocomplete="off">
+                <mat-error>You need to type the same password</mat-error>
             </mat-form-field>
             <div class="controls">
                 <button mat-raised-button type="submit" color="primary" [disabled]="signupForm.valid && passwordsMatch ? false : true">Sign up !</button>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl, ValidationErrors} from '@angular/forms';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { AuthentificationService } from '../authentification.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,10 +11,10 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class SignupComponent{
 
   private signupForm: FormGroup
-
+  private emailError: string
   private passwordsMatch:boolean = false
 
-  constructor() {
+  constructor(private authentificationService : AuthentificationService) {
     this.signupForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       pseudo: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -33,7 +34,28 @@ export class SignupComponent{
   }
 
   onSubmit() {
-    console.log(this.signupForm)
+    this.authentificationService.signin({
+      pseudo: this.signupForm.value.pseudo,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.password
+    }).subscribe(
+      response => {
+        
+      },
+      error => {
+        this.signupForm.get('email').setErrors(error)
+        this.emailError = error.error.message
+      },
+      () => {
+        console.log('complete')
+      }
+    )
+  }
+
+  resetError() {
+    if(this.emailError) {
+      this.emailError = null
+    }
   }
 
 }

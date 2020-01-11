@@ -4,7 +4,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { TeamsComponent } from './teams/teams.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
-import { LoginComponent } from './login/login.component';
+import { AuthentificationComponent } from './authentification/authentification.component';
 
 
 const routes: Routes = [
@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'teams', component: TeamsComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'auth', component: AuthentificationComponent }
 ];
 
 @NgModule({

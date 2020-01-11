@@ -5,11 +5,11 @@ import { Observable, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-auth',
+  templateUrl: './authentification.component.html',
+  styleUrls: ['./authentification.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class AuthentificationComponent implements OnInit, OnDestroy {
   
   isWebObserver$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.WebLandscape)
   .pipe(

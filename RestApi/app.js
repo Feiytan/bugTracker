@@ -9,11 +9,19 @@ const ticketsRouter = require('./Routes/ticketsRouter')
 const commentsRouter = require('./Routes/commentsRouter')
 
 app.use(bodyParser.json())
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', 'content-type')
+    next()
+})
+
 app.use('/users', usersRouter)
 app.use('/teams', teamsRouter)
 app.use('/rooms', roomsRouter)
 app.use('/tickets', ticketsRouter)
 app.use('/comments', commentsRouter)
+
 
 
 app.use((req, res, next) => {
