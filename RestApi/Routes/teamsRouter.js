@@ -1,10 +1,12 @@
 const express = require('express')
 const globalController = require('../Controllers/globalController')
+const teamController = require('../Controllers/teamController')
+const checkAuth = require('../Middleware/check-auth')
 const getLocals = require('../Middleware/locals')
 
 const router = express.Router()
 
-router.get('/', getLocals.getTeamLocals, globalController.getAll)
+router.get('/', getLocals.getTeamLocals, checkAuth.checkAuth, teamController.getTeamsForUser)
 
 router.get('/:id', getLocals.getTeamLocals, globalController.getById)
 

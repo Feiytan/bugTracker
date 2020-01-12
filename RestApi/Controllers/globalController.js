@@ -1,6 +1,4 @@
-const pool = require('../Config/mysql')
 const globalDAO = require('../DAL/globalDAO')
-const userDAO = require('../DAL/userDAO')
 const helpers = require('../Helpers/helpers')
 
 exports.getAll = function(req, res, next) {
