@@ -10,8 +10,6 @@ import { User } from './user';
 })
 
 export class AuthentificationService implements OnDestroy{
-
-
   public userSubject = new Subject<User>();
   private userSubscription : Subscription
   
@@ -27,6 +25,10 @@ export class AuthentificationService implements OnDestroy{
     })
   }
   
+  get token(){
+    return localStorage.getItem('token')
+  }
+
   signup(user) {
     return this.http.post(this.config.serverUrl + '/users', user)
   }

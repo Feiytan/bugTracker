@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { AuthentificationService } from '../authentification.service';
 import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +18,7 @@ export class SigninComponent implements OnInit {
   private loading : boolean = false
   error : boolean = false
 
-  constructor(private authentificationService : AuthentificationService) { }
+  constructor(private authentificationService : AuthentificationService, private router : Router) { }
 
   ngOnInit() {
   }

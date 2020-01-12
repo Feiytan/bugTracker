@@ -19,6 +19,14 @@
     z-index: 100;
 }
 
+.main-header-web {
+    width: calc(100% - 200px);
+}
+
+.main-header-mobile {
+    width: 100%;
+}
+
 .nav-button {
     display: block;
     width: 100%;

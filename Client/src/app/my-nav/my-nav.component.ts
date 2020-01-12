@@ -29,6 +29,7 @@ export class MyNavComponent implements OnDestroy{
   private subtoBreakPoints : Subscription
   private subToRoute: Subscription
   private subToNavigation: Subscription
+  private subToAuthentification: Subscription
   private isWeb : boolean
   private pageName: string
 
@@ -43,7 +44,20 @@ export class MyNavComponent implements OnDestroy{
       }
     })
 
-    
+    if(this.authentificationService.token === null) {
+      this.isLogin = false;
+    } else {
+      this.isLogin = true;
+      console.log('hide')
+    }
+
+    this.authentificationService.userSubject.subscribe(user => {
+      if (user === null) {
+        this.isLogin = false
+      } else {
+        this.isLogin = true
+      }
+    }) 
   }
 
   navigate() {
@@ -64,5 +78,6 @@ export class MyNavComponent implements OnDestroy{
     this.subtoBreakPoints.unsubscribe()
     this.subToRoute.unsubscribe()
     this.subToNavigation.unsubscribe()
+    this.subToAuthentification.unsubscribe()
   }
 }
