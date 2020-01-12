@@ -80,6 +80,7 @@ exports.create = function(tableName, keys, values) {
             if (error) {
                 reject({ status: 500, errorContent: error })
             } else {
+                result.profile = 'user'
                 resolve(result)
             }
         })

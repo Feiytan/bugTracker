@@ -13,10 +13,9 @@ exports.signup = function(req, res, next) {
         })
         .catch(error => {
             if (error.status === 404) {
-                console.log('ok')
                 globalDAO.create('Users', Object.keys(req.body), Object.values(req.body))
                     .then(response => {
-                        response.jwt = jwt.getJwt({ id: response.insertId })
+                        response.jwt = jwt.getJwt({ id: response.insertId, profile: response.profile })
                         res.status(201).json(response)
                     })
                     .catch(error => {
