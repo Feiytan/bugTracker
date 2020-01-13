@@ -7,7 +7,6 @@ exports.getUserLocals = function(req, res, next) {
             return {
                 id: user.User_id,
                 pseudo: user.Pseudo,
-                email: user.Email,
                 admin: user.Profile
             }
         }

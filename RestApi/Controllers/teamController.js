@@ -8,7 +8,7 @@ exports.getTeamsForUser = function(req, res, next) {
             } else {
                 let requests = 0
                 for (let team of teams) {
-                    teamDAO.getOtherMembers(req.locals.id, team.teamId)
+                    teamDAO.getOtherMembers(req.locals.id, team.team_id)
                         .then(members => {
                             console.log('get')
                             team.members = members
@@ -18,7 +18,7 @@ exports.getTeamsForUser = function(req, res, next) {
                             }
                         })
                         .catch(error => {
-                            return res.status(500).json(error.errorContent)
+                            return res.status(error.status).json(error.errorContent)
                         })
                 }
             }

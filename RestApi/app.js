@@ -7,12 +7,15 @@ const teamsRouter = require('./Routes/teamsRouter')
 const roomsRouter = require('./Routes/roomsRouter')
 const ticketsRouter = require('./Routes/ticketsRouter')
 const commentsRouter = require('./Routes/commentsRouter')
+const teamMembersRouter = require('./Routes/teamsMemberRouter')
 
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'content-type, Authorization')
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTION')
     next()
 })
 
@@ -21,6 +24,7 @@ app.use('/teams', teamsRouter)
 app.use('/rooms', roomsRouter)
 app.use('/tickets', ticketsRouter)
 app.use('/comments', commentsRouter)
+app.use('/teammembers', teamMembersRouter)
 
 
 

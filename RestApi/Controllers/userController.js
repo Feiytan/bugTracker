@@ -1,10 +1,10 @@
 const globalDAO = require('../DAL/globalDAO')
 const jwt = require('../Helpers/jwt')
 const bcrypt = require('bcrypt')
+const userDAO = require('../DAL/userDAO')
 
 exports.signup = function(req, res, next) {
     req.body.profile = 'user'
-    console.log(req.body)
     globalDAO.get('Users', [
             ['email', req.body.email]
         ])
@@ -49,4 +49,32 @@ exports.login = function(req, res, next) {
         .catch(error => {
             res.status(412).json("Login Failed")
         })
+}
+
+exports.getUsers = function(req, res, next) {
+    console.log(req.query)
+    if (req.query.pseudo === undefined) {
+        globalDAO.getAll(req.locals.tableName)
+            .then(rows => {
+                dtos = rows.map(row => {
+                    return req.locals.getDto(row)
+                })
+                res.status(200).json(dtos)
+            })
+            .catch(error => {
+                res.status(error.status).json(error.errorContent)
+            })
+    } else {
+        userDAO.getUsersThatMatch(req.query.pseudo)
+            .then(rows => {
+                dtos = rows.map(row => {
+                    return req.locals.getDto(row)
+                })
+                console.log(dtos)
+                return res.status(200).json(dtos)
+            })
+            .catch(error => {
+                res.status(error.status).json(error.errorContent)
+            })
+    }
 }

@@ -7,10 +7,7 @@ exports.getAll = function(req, res, next) {
             dtos = rows.map(row => {
                 return req.locals.getDto(row)
             })
-            res.status(200).json({
-                count: rows.length,
-                rows: dtos
-            })
+            res.status(200).json(dtos)
         })
         .catch(error => {
             res.status(error.status).json(error.errorContent)

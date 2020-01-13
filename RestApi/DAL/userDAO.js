@@ -12,3 +12,16 @@ exports.createUser = function(values) {
         })
     })
 }
+
+exports.getUsersThatMatch = function(pseudo) {
+    return new Promise((resolve, reject) => {
+        sql = "SELECT * FROM Users WHERE Pseudo LIKE ?"
+        pool.query(sql, [pseudo], (error, rows) => {
+            if (error) {
+                reject({ status: 500, errorContent: { message: error.sqlMessage } })
+            } else {
+                resolve(rows)
+            }
+        })
+    })
+}

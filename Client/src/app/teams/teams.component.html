@@ -1,1 +1,43 @@
-<p>teams works!</p>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let team of teams">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="field">
+                {{team.team_name}}
+            </mat-panel-title>
+            <mat-panel-description class="field">
+                {{team.profile}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+            <mat-list-item *ngFor="let member of team.members">
+                <div class="member item">
+                    <span class="pseudo field">{{member.pseudo}}</span>
+                    <span class="profile field">{{member.profile}}</span>
+                    <button mat-flat-button color="primary" [disabled]="team.profile === 'admin' ? false : true" (click)="deleteUser(team, member)">Delete</button>
+                </div>
+            </mat-list-item>
+            <form class="item adding_member" *ngIf="team.profile === 'admin'" [formGroup]="newUserGroup" (ngSubmit)="addNewMember(team)">
+                <fieldset>
+                    <legend>Add a member to the team</legend>
+                    <div class="flex-form">
+                        <mat-form-field class="example-full-width" color="accent">
+                            <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="newMemberNameControl" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let user of users" [value]="user.pseudo" (click)="setNewUser(user)">
+                                    {{user.pseudo}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field color="accent">
+                            <mat-select placeholder="Select" formControlName="newMemberProfileControl">
+                                <mat-option value="admin">admin</mat-option>
+                                <mat-option value="member">member</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" type="submit" [disabled]="newUser && (newUserGroup.value.newMemberProfileControl === 'admin' || newUserGroup.value.newMemberProfileControl === 'member') ? false : true">Add</button>
+                    </div>
+                </fieldset>
+            </form>
+        </mat-list>
+    </mat-expansion-panel>
+</mat-accordion>

@@ -7,7 +7,7 @@ const jwt = require('../Middleware/check-auth')
 
 const router = express.Router()
 
-router.get('/', jwt.checkAdminAuth, getLocals.getUserLocals, globalController.getAll)
+router.get('/', jwt.checkAuth, getLocals.getUserLocals, userController.getUsers)
 
 router.get('/:id', getLocals.getUserLocals, globalController.getById)
 

@@ -1,0 +1,41 @@
+.item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.member {
+    justify-content: space-between;
+}
+
+.item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.field {
+    flex-basis: 100px;
+}
+
+form {
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.flex-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+legend {
+    margin-bottom: 10px;
+}
+
+fieldset {
+    margin: 10px;
+    width: 100%;
+}

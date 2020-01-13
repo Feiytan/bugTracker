@@ -2,7 +2,7 @@ const pool = require('../Config/mysql')
 
 exports.getTeamsForUser = function(id) {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT Teams.Name AS 'teamName',TeamMembers.Profile AS 'profile', Teams.Team_id AS 'teamId' FROM TeamMembers INNER JOIN Users ON TeamMembers.User_id = Users.User_id INNER JOIN Teams ON Teams.Team_id = TeamMembers.Team_id WHERE Users.User_id = ?"
+        const sql = "SELECT Teams.Name AS 'team_name',TeamMembers.Profile AS 'profile', Teams.Team_id AS 'team_id' FROM TeamMembers INNER JOIN Users ON TeamMembers.User_id = Users.User_id INNER JOIN Teams ON Teams.Team_id = TeamMembers.Team_id WHERE Users.User_id = ?"
         pool.query(sql, [id], (error, response) => {
             if (error) {
                 reject({ status: 500, errorContent: { message: error.sqlMessage } })
