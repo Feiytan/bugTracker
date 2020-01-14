@@ -35,6 +35,7 @@ import { NewTeamFormComponent } from './teams/new-team-form/new-team-form.compon
 import {MatGridListModule} from '@angular/material/grid-list';
 import { ChartComponent } from './rooms/chart/chart.component';
 import { FormComponent } from './rooms/form/form.component';
+import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { FormComponent } from './rooms/form/form.component';
     SignupComponent,
     NewTeamFormComponent,
     ChartComponent,
-    FormComponent
+    FormComponent,
+    RoomDetailComponent
   ],
   imports: [
     BrowserModule,

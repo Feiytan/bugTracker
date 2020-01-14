@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavService } from '../my-nav/nav.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
@@ -26,7 +26,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     shareReplay()
   )
 
-  constructor( private route : ActivatedRoute, private navService : NavService, private breakpointObserver: BreakpointObserver, private roomsService: RoomsService) {
+  constructor( private route : ActivatedRoute, private navService : NavService, private breakpointObserver: BreakpointObserver, private roomsService: RoomsService, private router: Router) {
     this.subtoBreakPoints = this.isWebObserver$.subscribe(response => {
       this.isWeb = response
     })
@@ -60,6 +60,10 @@ export class RoomsComponent implements OnInit, OnDestroy {
         console.log(error)
       }
       )
+    }
+
+    enterRoom(id) {
+      this.router.navigate(['/rooms/', id])
     }
     
     ngOnDestroy(): void {

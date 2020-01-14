@@ -6,10 +6,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { AuthGuardService } from '../app/my-nav/auth-guard.service'
+import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
 
 
 const routes: Routes = [
   { path: 'rooms', component: RoomsComponent, canActivate: [AuthGuardService] },
+  { path: 'rooms/:id', component: RoomDetailComponent, canActivate: [AuthGuardService] },
   { path: 'teams', component: TeamsComponent, canActivate: [AuthGuardService]  },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]  },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuardService]  },

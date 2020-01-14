@@ -11,7 +11,7 @@
         </mat-card-content>
         <mat-card-actions class="control-container">
             <button mat-flat-button color="warn" (click)="deleteRoom(room.room_id)">Delete</button>
-            <button mat-flat-button color="primary">Enter the room</button>
+            <button mat-flat-button color="primary" (click)="enterRoom(room.room_id)">Enter the room</button>
         </mat-card-actions>
     </mat-card>
     <mat-card class="form-card">
