@@ -2,10 +2,11 @@ const express = require('express')
 const globalController = require('../Controllers/globalController')
 const getLocals = require('../Middleware/locals')
 const checkAuth = require('../Middleware/check-auth')
+const roomsController = require('../Controllers/roomsController')
 
 const router = express.Router()
 
-router.get('/', getLocals.getRoomLocals, checkAuth.checkAuth, globalController.getAll)
+router.get('/', getLocals.getRoomLocals, checkAuth.checkAuth, roomsController.getRooms)
 
 router.get('/:id', getLocals.getRoomLocals, globalController.getById)
 
