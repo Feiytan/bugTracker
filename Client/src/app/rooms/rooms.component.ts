@@ -47,4 +47,15 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.subtoBreakPoints.unsubscribe()
   }
 
+  deleteRoom(room_id) {
+    this.roomsService.deleteTeam(room_id).subscribe(
+      _ => {
+        this.rooms = this.rooms.filter(room => room.room_id != room_id)
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
 }

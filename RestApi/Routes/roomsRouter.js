@@ -8,9 +8,9 @@ const router = express.Router()
 
 router.get('/', getLocals.getRoomLocals, checkAuth.checkAuth, roomsController.getRooms)
 
-router.get('/:id', getLocals.getRoomLocals, globalController.getById)
+router.get('/:id', getLocals.getRoomLocals, checkAuth.checkAuth, globalController.getById)
 
-router.delete('/:id', getLocals.getRoomLocals, globalController.delete)
+router.delete('/:id', getLocals.getRoomLocals, checkAuth.checkAuth, roomsController.delete)
 
 router.post('/', getLocals.getRoomLocals, globalController.create)
 

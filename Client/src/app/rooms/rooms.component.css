@@ -26,3 +26,8 @@ button {
 .subtitle {
     padding: 10px 3px;
 }
+
+.form-card {
+    width: 90%;
+    margin: 20px auto;
+}

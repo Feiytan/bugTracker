@@ -1,0 +1,11 @@
+<form [ngClass]="isWeb ? 'form-web' : 'form-mobile'" (ngSubmit)="addRoom()" [formGroup]="newRoomFormGroup">
+    <mat-form-field color="accent">
+        <input matInput placeholder="Input" autocomplete="off" formControlName="roomName">
+    </mat-form-field>
+    <mat-form-field color="accent">
+        <mat-select placeholder="Select" formControlName="teamName">
+            <mat-option *ngFor="let team of teams" [value]="team">{{team.team_name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-flat-button color="primary" [disabled]="newRoomFormGroup.valid ? 'false' : 'true'" type="submit">Add the project</button>
+</form>

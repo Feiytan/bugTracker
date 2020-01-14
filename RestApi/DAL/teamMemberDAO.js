@@ -7,12 +7,17 @@ exports.isAdminInTeam = function(team_id, user_id) {
             if (error) {
                 reject({ status: 500, errorContent: { message: error.sqlMessage } })
             } else {
-                if (response[0].Profile === 'admin') {
-                    resolve(true)
+                if (response.length > 0) {
+                    if (response[0].Profile === 'admin') {
+                        resolve(true)
+                    } else {
+                        resolve(false)
+                    }
                 } else {
                     resolve(false)
                 }
             }
+
         })
     })
 }

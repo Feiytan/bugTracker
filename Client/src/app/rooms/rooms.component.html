@@ -10,8 +10,11 @@
             <app-chart [room_id]="room.room_id.toString()"></app-chart>
         </mat-card-content>
         <mat-card-actions class="control-container">
-            <button mat-flat-button color="warn">Delete</button>
+            <button mat-flat-button color="warn" (click)="deleteRoom(room.room_id)">Delete</button>
             <button mat-flat-button color="primary">Enter the room</button>
         </mat-card-actions>
+    </mat-card>
+    <mat-card class="form-card">
+        <app-form></app-form>
     </mat-card>
 </div>

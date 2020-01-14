@@ -32,7 +32,11 @@ exports.getRoomLocals = function(req, res, next) {
         idName: 'Room_id',
         validKeys: ['team_id', 'name'],
         getDto: function(room) {
-            return room
+            return {
+                room_id: room.Room_id,
+                team_id: room.Team_id,
+                name: room.Name
+            }
         }
     }
     next()
