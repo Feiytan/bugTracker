@@ -12,3 +12,29 @@ exports.getRooms = function(user_id) {
         })
     })
 }
+
+exports.checkIfUserInRoom = function(user_id, room_id) {
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT COUNT(*) AS 'isInRoom' FROM Rooms INNER JOIN Teams ON Teams.Team_id = Rooms.Team_id INNER JOIN TeamMembers ON TeamMembers.Team_id = Teams.Team_id WHERE TeamMembers.User_id = ? AND Rooms.Room_id = ?"
+        pool.query(sql, [user_id, room_id], (error, result) => {
+            if (error) {
+                reject({ status: 500, errorContent: { message: error.sqlMessage } })
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}
+
+exports.getNumberOfTodoInRoom = function(room_id) {
+    return new Promise((resolve, reject) => {
+        const sql = "SELECT * FROM Tickets INNER JOIN Rooms ON Rooms.Room_id = Tickets.Room_id WHERE Rooms.Room_id = ? AND Tickets.Status = 'todo'"
+        pool.query(sql, [room_id], (error, result) => {
+            if (error) {
+                reject({ status: 500, errorContent: { message: error.sqlMessage } })
+            } else {
+                resolve(result)
+            }
+        })
+    })
+}

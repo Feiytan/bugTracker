@@ -4,6 +4,7 @@ import { NavService } from '../my-nav/nav.service';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { shareReplay, map } from 'rxjs/operators';
+import { RoomsService } from './rooms.service';
 
 @Component({
   selector: 'app-rooms',
@@ -21,8 +22,8 @@ export class RoomsComponent implements OnInit, OnDestroy {
     map(result => result.matches),
     shareReplay()
   )
-  
-  constructor( private route : ActivatedRoute, private navService : NavService, private breakpointObserver: BreakpointObserver) {
+
+  constructor( private route : ActivatedRoute, private navService : NavService, private breakpointObserver: BreakpointObserver, private roomsService: RoomsService) {
     this.subtoBreakPoints = this.isWebObserver$.subscribe(response => {
       this.isWeb = response
     })
@@ -30,6 +31,14 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.navService.currentPageObservable.next('Rooms')
+    this.roomsService.getRooms().subscribe(
+      (result) => {
+        console.log(result)
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   ngOnDestroy(): void {
