@@ -5,6 +5,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { shareReplay, map } from 'rxjs/operators';
 import { RoomsService } from './rooms.service';
+import { Room } from './room';
 
 @Component({
   selector: 'app-rooms',
@@ -17,6 +18,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
   private isWeb : boolean
   private subtoBreakPoints: Subscription
   private rooms: any
+  private newRoomSubscription: Subscription
 
   isWebObserver$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.WebLandscape)
   .pipe(
@@ -41,12 +43,14 @@ export class RoomsComponent implements OnInit, OnDestroy {
         console.log(error)
       }
     )
-  }
 
-  ngOnDestroy(): void {
-    this.subtoBreakPoints.unsubscribe()
+    this.newRoomSubscription = this.roomsService.newRoom.subscribe(
+      (newRoom: Room) => {
+        this.rooms.push(newRoom)
+      }
+    )
   }
-
+  
   deleteRoom(room_id) {
     this.roomsService.deleteTeam(room_id).subscribe(
       _ => {
@@ -55,7 +59,11 @@ export class RoomsComponent implements OnInit, OnDestroy {
       error => {
         console.log(error)
       }
-    )
-  }
-
+      )
+    }
+    
+    ngOnDestroy(): void {
+      this.subtoBreakPoints.unsubscribe()
+      this.newRoomSubscription.unsubscribe()
+    }
 }

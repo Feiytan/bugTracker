@@ -12,7 +12,7 @@ router.get('/:id', getLocals.getRoomLocals, checkAuth.checkAuth, globalControlle
 
 router.delete('/:id', getLocals.getRoomLocals, checkAuth.checkAuth, roomsController.delete)
 
-router.post('/', getLocals.getRoomLocals, globalController.create)
+router.post('/', getLocals.getRoomLocals, checkAuth.checkAuth, globalController.create)
 
 router.patch('/:id', getLocals.getRoomLocals, globalController.patch)
 

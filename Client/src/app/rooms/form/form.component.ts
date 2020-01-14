@@ -2,9 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Team } from 'src/app/teams/team';
 import { TeamsService } from 'src/app/teams/teams.service';
+import { RoomsService } from '../rooms.service';
+import { Room } from '../room';
 
 @Component({
   selector: 'app-form',
@@ -25,7 +27,7 @@ export class FormComponent implements OnInit, OnDestroy {
     shareReplay()
   )
 
-  constructor(private breakpointObserver: BreakpointObserver, private teamsService: TeamsService) {
+  constructor(private breakpointObserver: BreakpointObserver, private teamsService: TeamsService, private roomService: RoomsService) {
     this.subtoBreakPoints = this.isWebObserver$.subscribe(response => {
       this.isWeb = response
     })
@@ -34,7 +36,7 @@ export class FormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.newRoomFormGroup = new FormGroup({
       roomName: new FormControl('', Validators.required),
-      teamName: new FormControl('', Validators.required)
+      team: new FormControl('', Validators.required)
     })
     this.teamsService.getTeamsForUser().subscribe(
       (response: Team[]) => {
@@ -47,8 +49,19 @@ export class FormComponent implements OnInit, OnDestroy {
     this.subtoBreakPoints.unsubscribe()
   }
 
-  addRoom() {
-    console.log(this.newRoomFormGroup)
+  addRoom(form: NgForm) {
+    this.roomService.addRoom(this.newRoomFormGroup.value.roomName, this.newRoomFormGroup.value.team.team_id).subscribe(
+      (result:any) => {
+        console.log(result)
+        this.roomService.newRoom.next(new Room(result.insertId, this.newRoomFormGroup.value.roomName, this.newRoomFormGroup.value.team.team_id, this.newRoomFormGroup.value.team.team_name))
+      },
+      error => {
+        console.log(error)
+      },
+      () => {
+        form.resetForm()
+      }
+    )
   }
 
 }

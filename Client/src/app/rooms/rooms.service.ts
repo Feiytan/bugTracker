@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ConfigService } from '../shared/config.service';
 import { AuthentificationService } from '../authentification/authentification.service';
 import { Subject } from 'rxjs';
+import { Room } from './room';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomsService {
 
-  newRoom = new Subject
+  newRoom = new Subject<Room>()
 
   constructor(private http: HttpClient, private config: ConfigService, private authService: AuthentificationService) { }
 
@@ -36,4 +37,14 @@ export class RoomsService {
       })
     })
   }
+
+  addRoom(room_name, team_id) {
+    console.log(room_name, team_id)
+    return this.http.post(this.config.serverUrl + '/rooms', {name: room_name, team_id: team_id},{
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.authService.token
+      })
+    })
+  }
+
 }
