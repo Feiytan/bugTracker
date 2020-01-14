@@ -47,7 +47,6 @@ export class TeamsService {
   }
 
   deleteTeam(team_id) {
-    console.log('hello from deleteTeam service')
     return this.http.delete(this.config.serverUrl + '/teams/' + team_id, {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + this.authService.token

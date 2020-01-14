@@ -16,6 +16,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   private isWeb : boolean
   private subtoBreakPoints: Subscription
+  private rooms: any
 
   isWebObserver$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.WebLandscape)
   .pipe(
@@ -33,7 +34,8 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.navService.currentPageObservable.next('Rooms')
     this.roomsService.getRooms().subscribe(
       (result) => {
-        console.log(result)
+        this.rooms = result
+        console.log(this.rooms)
       },
       error => {
         console.log(error)

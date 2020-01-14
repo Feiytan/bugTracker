@@ -7,6 +7,10 @@ exports.getTicketsForRoom = function(req, res, next) {
             if (response[0].isInRoom === 1) {
                 ticketsDAO.getTicketsForRoom(req.params.id)
                     .then(rows => {
+                        console.log(rows)
+                        rows = rows.map(row => {
+                            return { ticket_id: row.Ticket_id, title: row.Title, content: row.Content, status: row.Status, room_id: row.Room_id }
+                        })
                         return res.status(200).json(rows)
                     })
                     .catch(error => {

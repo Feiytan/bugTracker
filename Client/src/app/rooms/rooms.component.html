@@ -1,28 +1,17 @@
 <div class="container">
-    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'">
+    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'" *ngFor="let room of rooms">
         <mat-card-title>
-            Title
+            {{room.room_name}}
         </mat-card-title>
+        <mat-card-subtitle class="subtitle">
+            {{'Team: ' + room.team_name}}
+        </mat-card-subtitle>
         <mat-card-content>
-            <app-chart room_id="test"></app-chart>
+            <app-chart [room_id]="room.room_id.toString()"></app-chart>
         </mat-card-content>
-    </mat-card>
-
-    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'">
-        <mat-card-title>
-            Title
-        </mat-card-title>
-        <mat-card-content>
-            <app-chart room_id="test1"></app-chart>
-        </mat-card-content>
-    </mat-card>
-
-    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'">
-        <mat-card-title>
-            Title
-        </mat-card-title>
-        <mat-card-content>
-            <app-chart room_id="test2"></app-chart>
-        </mat-card-content>
+        <mat-card-actions class="control-container">
+            <button mat-flat-button color="warn">Delete</button>
+            <button mat-flat-button color="primary">Enter the room</button>
+        </mat-card-actions>
     </mat-card>
 </div>

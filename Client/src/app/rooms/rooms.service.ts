@@ -17,4 +17,12 @@ export class RoomsService {
       })
     })
   }
+
+  getTicketsForRoom(room_id) {
+    return this.http.get(this.config.serverUrl + '/tickets/' + room_id, {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + this.authService.token
+      })
+    })
+  }
 }

@@ -12,3 +12,17 @@
     width: 100%;
     margin-bottom: 10px;
 }
+
+.control-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+button {
+    margin: 20px;
+}
+
+.subtitle {
+    padding: 10px 3px;
+}
