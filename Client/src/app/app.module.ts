@@ -32,6 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import { NewTeamFormComponent } from './teams/new-team-form/new-team-form.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { ChartComponent } from './rooms/chart/chart.component';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { NewTeamFormComponent } from './teams/new-team-form/new-team-form.compon
     AuthentificationComponent,
     SigninComponent,
     SignupComponent,
-    NewTeamFormComponent
+    NewTeamFormComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { NewTeamFormComponent } from './teams/new-team-form/new-team-form.compon
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatExpansionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

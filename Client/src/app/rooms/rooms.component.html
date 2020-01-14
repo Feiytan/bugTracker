@@ -1,68 +1,28 @@
-<div>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
-    <p>rooms works!</p>
+<div class="container">
+    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'">
+        <mat-card-title>
+            Title
+        </mat-card-title>
+        <mat-card-content>
+            <app-chart room_id="test"></app-chart>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'">
+        <mat-card-title>
+            Title
+        </mat-card-title>
+        <mat-card-content>
+            <app-chart room_id="test1"></app-chart>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card [ngClass]="isWeb ? 'card-web' : 'card-mobile'">
+        <mat-card-title>
+            Title
+        </mat-card-title>
+        <mat-card-content>
+            <app-chart room_id="test2"></app-chart>
+        </mat-card-content>
+    </mat-card>
 </div>
