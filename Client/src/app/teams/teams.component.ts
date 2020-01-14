@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NavService } from '../my-nav/nav.service';
 import { TeamsService } from './teams.service';
 import { Router } from '@angular/router';
 import { Team } from './team';
 import { FormControl, FormGroup } from '@angular/forms';
-import { startWith, map, take, skip, debounceTime, filter, distinct, distinctUntilChanged } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { startWith, map, take, skip, debounceTime, filter, distinct, distinctUntilChanged, shareReplay } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 import { TeamUser } from './teamUser';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
-export class TeamsComponent implements OnInit {
+export class TeamsComponent implements OnInit, OnDestroy {
+
 
   private teams : Team[]
   newMemberNameControl = new FormControl();
@@ -22,8 +23,18 @@ export class TeamsComponent implements OnInit {
   users: TeamUser[] = new Array()
   newUser
   newUserGroup:FormGroup
+  private newTeamSub: Subscription
+  private isWeb: boolean
 
-  constructor(private navService: NavService, private teamsService : TeamsService, private router : Router) { 
+
+  isWebObserver$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.WebLandscape)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  )
+  subtoBreakPoints: Subscription;
+
+  constructor(private breakpointObserver: BreakpointObserver, private navService: NavService, private teamsService : TeamsService, private router : Router) { 
 
     this.teamsService.getTeamsForUser().subscribe(
       (response : Team[]) => {
@@ -31,7 +42,7 @@ export class TeamsComponent implements OnInit {
       },
       error => {
         console.log(error)
-        this.router.navigate(['/', 'auth'])
+        this.teams = new Array()
       },
       () => {
         console.log('complete')
@@ -53,6 +64,19 @@ export class TeamsComponent implements OnInit {
       }
     })
     this.newUserGroup.controls.newMemberNameControl.valueChanges.subscribe( _ => this.newUser = null)
+
+    this.newTeamSub = this.teamsService.newTeam.subscribe((value: string) => {
+      this.teamsService.addTeam(value).subscribe(
+        (result : {team_id}) => {
+          this.teams.push(new Team(result.team_id, value, 'admin', new Array()))
+        }
+      )
+    })
+
+    this.subtoBreakPoints = this.isWebObserver$.subscribe(response => {
+      this.isWeb = response
+    })
+
   }
 
   private filter(value: string): void{
@@ -96,5 +120,21 @@ export class TeamsComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  private deleteTeam(team_id) {
+    console.log('hey')
+    this.teamsService.deleteTeam(team_id).subscribe(
+      _ => {
+        this.teams = this.teams.filter(team => {
+          return team.team_id !== team_id
+        })
+      }
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.newTeamSub.unsubscribe()
+    this.subtoBreakPoints.unsubscribe()
   }
 }

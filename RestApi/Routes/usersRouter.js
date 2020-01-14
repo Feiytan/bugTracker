@@ -11,7 +11,7 @@ router.get('/', jwt.checkAuth, getLocals.getUserLocals, userController.getUsers)
 
 router.get('/:id', getLocals.getUserLocals, globalController.getById)
 
-router.delete('/:id', getLocals.getUserLocals, globalController.delete)
+router.delete('/:id', getLocals.getUserLocals, jwt.checkAuth, globalController.delete)
 
 router.post('/', cryptPassword, getLocals.getUserLocals, userController.signup)
 

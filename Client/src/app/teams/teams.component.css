@@ -25,10 +25,17 @@ form {
 
 .flex-form {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.flex-form-web {
+    flex-direction: row;
+}
+
+.flex-form-mobile {
+    flex-direction: column;
 }
 
 legend {
@@ -37,5 +44,19 @@ legend {
 
 fieldset {
     margin: 10px;
+    width: 100%;
+}
+
+.delete-button {
+    margin-top: 20px !important;
+}
+
+.web-button {
+    display: block;
+    width: 50%;
+    margin: auto;
+}
+
+.mobile-button {
     width: 100%;
 }

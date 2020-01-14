@@ -37,7 +37,9 @@ export class SigninComponent implements OnInit {
         this.loading = false
       },
       () => {
+        console.log('complete')
         this.loading = false
+        this.router.navigate(['/rooms'])
       }
     )
   }

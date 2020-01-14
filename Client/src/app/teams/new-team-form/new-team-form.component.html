@@ -1,0 +1,8 @@
+<mat-card class="container">
+    <form (ngSubmit)="addTeam()">
+        <mat-form-field color="accent">
+            <input matInput placeholder="Name of your new team" autocomplete="off" [formControl]="name">
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit" [disabled]="name.valid ? false : true">Add team</button>
+    </form>
+</mat-card>

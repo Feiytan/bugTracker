@@ -31,6 +31,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import { NewTeamFormComponent } from './teams/new-team-form/new-team-form.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {MatSelectModule} from '@angular/material/select';
     ContactComponent,
     AuthentificationComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    NewTeamFormComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@
             <form class="item adding_member" *ngIf="team.profile === 'admin'" [formGroup]="newUserGroup" (ngSubmit)="addNewMember(team)">
                 <fieldset>
                     <legend>Add a member to the team</legend>
-                    <div class="flex-form">
+                    <div class="flex-form" [ngClass]="isWeb ? 'flex-form-web' : 'flex-form-mobile'">
                         <mat-form-field class="example-full-width" color="accent">
                             <input type="text" placeholder="Pick one" aria-label="Number" matInput formControlName="newMemberNameControl" [matAutocomplete]="auto">
                             <mat-autocomplete #auto="matAutocomplete">
@@ -39,5 +39,7 @@
                 </fieldset>
             </form>
         </mat-list>
+        <button mat-flat-button color="warn" class="delete-button" [ngClass]="isWeb ? 'web-button' : 'mobile-button'" (click)="deleteTeam(team.team_id)" *ngIf="team.profile === 'admin'">Delete the team</button>
     </mat-expansion-panel>
 </mat-accordion>
+<app-new-team-form class="new-team-form"></app-new-team-form>

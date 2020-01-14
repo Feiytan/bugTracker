@@ -10,9 +10,9 @@ router.get('/', getLocals.getTeamLocals, checkAuth.checkAuth, teamController.get
 
 router.get('/:id', getLocals.getTeamLocals, globalController.getById)
 
-router.delete('/:id', getLocals.getTeamLocals, globalController.delete)
+router.delete('/:id', getLocals.getTeamLocals, checkAuth.checkAuth, teamController.delete)
 
-router.post('/', getLocals.getTeamLocals, globalController.create)
+router.post('/', getLocals.getTeamLocals, checkAuth.checkAuth, teamController.addNewTeam)
 
 router.patch('/:id', getLocals.getTeamLocals, globalController.patch)
 

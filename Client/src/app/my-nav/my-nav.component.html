@@ -4,11 +4,11 @@
             <span>Menu</span>
         </mat-toolbar>
         <mat-action-list>
-            <button mat-list-item routerLink="/rooms" routerLinkActive="active" (click)="navigate()">Rooms</button>
-            <button mat-list-item routerLink="/teams" routerLinkActive="active" selected="true" (click)="navigate()">Teams</button>
-            <button mat-list-item routerLink="/profile" routerLinkActive="active" (click)="navigate()">Profile</button>
-            <button mat-list-item routerLink="/contact" routerLinkActive="active" (click)="navigate()">Contact</button>
-            <button mat-list-item routerLink="/auth" routerLinkActive="active" (click)="navigate()">Login</button>
+            <button mat-list-item routerLink="/rooms" routerLinkActive="active" (click)="navigate()" *ngIf="isLogin">Rooms</button>
+            <button mat-list-item routerLink="/teams" routerLinkActive="active" selected="true" (click)="navigate()" *ngIf="isLogin">Teams</button>
+            <button mat-list-item routerLink="/profile" routerLinkActive="active" (click)="navigate()" *ngIf="isLogin">Profile</button>
+            <button mat-list-item routerLink="/contact" routerLinkActive="active" (click)="navigate()" *ngIf="isLogin">Contact</button>
+            <button mat-list-item routerLink="/auth" routerLinkActive="active" (click)="navigate()" *ngIf="!isLogin">Login</button>
         </mat-action-list>
     </mat-sidenav>
     <mat-sidenav-content>
