@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+}
+
+.list {
+    flex-grow: 1;
+    margin: 10px;
+}
+
+.controls-container {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+}

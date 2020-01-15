@@ -36,6 +36,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { ChartComponent } from './rooms/chart/chart.component';
 import { FormComponent } from './rooms/form/form.component';
 import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
     MatProgressSpinnerModule,
     MatExpansionModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

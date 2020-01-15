@@ -35,7 +35,7 @@ export class ChartComponent implements AfterViewInit, OnInit {
             type: 'doughnut',
             data: {
               datasets: [{
-                data: [this.tickets.filter(ticket => ticket.status === 'todo').length, this.tickets.filter(ticket => ticket.status === 'inprogress').length, this.tickets.filter(ticket => ticket.status === 'finish').length],
+                data: [this.tickets.filter(ticket => ticket.status === 'todo').length, this.tickets.filter(ticket => ticket.status === 'inprogress').length, this.tickets.filter(ticket => ticket.status === 'done').length],
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.7)',
                   'rgba(255, 206, 86, 0.7)',
@@ -45,7 +45,7 @@ export class ChartComponent implements AfterViewInit, OnInit {
               labels: [
                 'To do',
                 'In progress',
-                'Finish'
+                'Done'
               ],
             },
             options: Chart.defaults.doughnut
