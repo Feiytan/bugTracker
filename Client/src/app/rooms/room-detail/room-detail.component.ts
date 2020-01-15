@@ -5,6 +5,7 @@ import { NavService } from 'src/app/my-nav/nav.service';
 import { RoomsService } from '../rooms.service';
 import { Ticket } from '../ticket';
 import { TicketService } from './ticket.service';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-room-detail',
@@ -18,6 +19,7 @@ export class RoomDetailComponent implements OnInit, OnDestroy {
   private toDoTickets: Ticket[]
   private inProgressTickets: Ticket[]
   private doneTickets: Ticket[]
+  private subToNewTicket: Subscription
 
   constructor(private route: ActivatedRoute, private navService: NavService, private roomService: RoomsService, private ticketService: TicketService) { }
 
@@ -36,13 +38,13 @@ export class RoomDetailComponent implements OnInit, OnDestroy {
       },
       error => {
         console.log(error)
-      },
-      () => {
-        console.log(this.toDoTickets)
-        console.log(this.inProgressTickets)
-        console.log(this.doneTickets)
       }
-      
+    )
+
+    this.subToNewTicket = this.ticketService.newTicket.subscribe(
+      (response : Ticket) => {
+          this.toDoTickets.push(response)
+      }
     )
   }
 
@@ -81,5 +83,6 @@ export class RoomDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subToRoute.unsubscribe()
+    this.subToNewTicket.unsubscribe()
   }
 }

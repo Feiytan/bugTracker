@@ -1,0 +1,11 @@
+<mat-card class="card">
+    <form #ticketForm="ngForm" [formGroup]="newTicketFormGroup">
+        <mat-form-field color="accent">
+            <input matInput placeholder="title" autocomplete="off" formControlName="title">
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput placeholder="content" autocomplete="off" formControlName="content">
+        </mat-form-field>
+        <button mat-flat-button color="primary" [disabled]="newTicketFormGroup.valid ? 'false' : 'true'" (click)="addTicket(ticketForm)">Add the project</button>
+    </form>
+</mat-card>

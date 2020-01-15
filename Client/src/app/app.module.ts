@@ -37,6 +37,7 @@ import { ChartComponent } from './rooms/chart/chart.component';
 import { FormComponent } from './rooms/form/form.component';
 import { RoomDetailComponent } from './rooms/room-detail/room-detail.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NewTicketFormComponent } from './rooms/room-detail/new-ticket-form/new-ticket-form.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NewTeamFormComponent,
     ChartComponent,
     FormComponent,
-    RoomDetailComponent
+    RoomDetailComponent,
+    NewTicketFormComponent
   ],
   imports: [
     BrowserModule,
