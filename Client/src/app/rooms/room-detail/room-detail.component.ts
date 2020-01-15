@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { NavService } from 'src/app/my-nav/nav.service';
 import { RoomsService } from '../rooms.service';
 import { Ticket } from '../ticket';
+import { TicketService } from './ticket.service';
 
 @Component({
   selector: 'app-room-detail',
@@ -18,7 +19,7 @@ export class RoomDetailComponent implements OnInit, OnDestroy {
   private inProgressTickets: Ticket[]
   private doneTickets: Ticket[]
 
-  constructor(private route: ActivatedRoute, private navService: NavService, private roomService: RoomsService) { }
+  constructor(private route: ActivatedRoute, private navService: NavService, private roomService: RoomsService, private ticketService: TicketService) { }
 
   ngOnInit() {
     
@@ -46,7 +47,36 @@ export class RoomDetailComponent implements OnInit, OnDestroy {
   }
 
   setToInProgress(ticket: Ticket) {
-    this.inProgressTickets.push(this.toDoTickets.splice(this.toDoTickets.indexOf(ticket), 1)[0])
+    this.ticketService.patch('inprogress', ticket.ticket_id).subscribe(
+      () => {
+        this.inProgressTickets.push(this.toDoTickets.splice(this.toDoTickets.indexOf(ticket), 1)[0])
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  setToToDo(ticket: Ticket) {
+    this.ticketService.patch('todo', ticket.ticket_id).subscribe(
+      () => {
+        this.toDoTickets.push(this.inProgressTickets.splice(this.inProgressTickets.indexOf(ticket), 1)[0])
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  setToDone(ticket: Ticket) {
+    this.ticketService.patch('done', ticket.ticket_id).subscribe(
+      () => {
+        this.doneTickets.push(this.inProgressTickets.splice(this.inProgressTickets.indexOf(ticket), 1)[0])
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
 
   ngOnDestroy() {

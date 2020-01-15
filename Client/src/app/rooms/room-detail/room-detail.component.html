@@ -16,7 +16,7 @@
     </mat-accordion>
 
     <mat-accordion class="list">
-        <h2>To Do</h2>
+        <h2>In Progress</h2>
         <mat-expansion-panel *ngFor="let ticket of inProgressTickets">
             <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -25,13 +25,14 @@
             </mat-expansion-panel-header>
             <div>{{ticket.content}}</div>
             <div class="controls-container">
-                <button mat-flat-button (click)="setToInProgress(ticket)" color="primary">Set to in progress</button>
+                <button mat-flat-button (click)="setToToDo(ticket)" color="primary">Set to to do</button>
+                <button mat-flat-button (click)="setToDone(ticket)" color="primary">Set to done</button>
             </div>
         </mat-expansion-panel>
     </mat-accordion>
 
     <mat-accordion class="list">
-        <h2>To Do</h2>
+        <h2>Done</h2>
         <mat-expansion-panel *ngFor="let ticket of doneTickets">
             <mat-expansion-panel-header>
                 <mat-panel-title>
